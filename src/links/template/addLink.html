@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block content %}
+<form action='/links/add' method='POST'>
+    <div style="display:grid;grid-template-columns: auto auto auto auto auto auto auto auto auto auto auto auto auto;justify-content:space-evenly;align-content:center;">
+        <span style="grid-row:1;grid-column:6;">{{ form.name.label }}</span><span style="grid-row:1;grid-column:8;">{{ form.name() }}</span>
+        <span style="grid-row:2;grid-column:6;">{{ form.url.label }}</span><span style="grid-row:2;grid-column:8;">{{ form.url() }}</span>
+        <span style="grid-row:3;grid-column:7;">{{ form.submit() }}</span>
+    </div>
+</form>
+{% endblock %}
