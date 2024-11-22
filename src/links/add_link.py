@@ -26,4 +26,4 @@ def add_link():
         return redirect(url_for('links.show_links'))
     return render_template('addLink.html',form=link_form,sectionname="Link")
 
-current_menu.register(add_link,'Nuovo',logged_only=True)
+current_menu.register(text='Add',external_url=url_for('add_link'),logged_only=True)

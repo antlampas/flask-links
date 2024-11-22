@@ -35,4 +35,4 @@ def edit_link():
         link_form.name.choices = [link.name for link in links]
         return render_template('chooseLink.html',form=link_form,sectionname="Link")
 
-current_menu.register(edit_link,'.links.edit',logged_only=True)
+current_menu.register(text='Edit',external_url=url_for('edit_link'),logged_only=True)
