@@ -1,5 +1,4 @@
 from flask             import current_app,request,redirect,Blueprint,render_template,url_for
-from flask_menu        import register
 from flask_sqlalchemy  import SQLAlchemy
 from flask_security    import auth_required
 
