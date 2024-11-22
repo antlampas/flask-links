@@ -27,4 +27,4 @@ def delete_link():
     link_form.name.choices = [link.name for link in links]
     return render_template('deleteLink.html',form=link_form,sectionname="Link")
 
-current_menu.register('Remove',external_url=url_for('delete_link'),logged_only=True)
+current_menu.register('Remove',external_url=links_blueprint.static_url_path()+"/delete",logged_only=True)
