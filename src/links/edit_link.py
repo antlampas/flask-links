@@ -1,5 +1,5 @@
 from flask          import current_app,request,redirect,render_template,url_for
-from flask_menu     import register_menu
+from flask_menu     import current_menu
 from flask_security import auth_required
 from flask_login    import current_user
 from wtforms        import Label
@@ -12,7 +12,6 @@ from .forms         import chooseLinkForm,linkForm
 
 @links_blueprint.route('/edit',methods = ['GET','POST'])
 @auth_required()
-@register_menu(links_blueprint, '.links.edit', 'Modifica',logged_only=True)
 def edit_link():
     if request.method == 'POST':
         current_app.logger.info(current_user.username + " is editing link to " + clean(request.form['name']))
@@ -35,3 +34,5 @@ def edit_link():
         links = current_app.database.paginate(current_app.database.select(Link))
         link_form.name.choices = [link.name for link in links]
         return render_template('chooseLink.html',form=link_form,sectionname="Link")
+
+current_menu.register_menu(links_blueprint,edit_link,'.links.edit', 'Modifica',logged_only=True)

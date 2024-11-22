@@ -1,5 +1,5 @@
 from flask          import current_app,request,redirect,render_template,url_for
-from flask_menu     import register_menu
+from flask_menu     import current_menu
 from flask_security import auth_required
 from flask_login    import current_user
 from wtforms        import Label
@@ -12,7 +12,6 @@ from .forms         import chooseLinkForm
 
 @links_blueprint.route('/delete',methods = ['GET','POST'])
 @auth_required()
-@register_menu(links_blueprint, '.links.delete', 'Rimuovi',logged_only=True)
 def delete_link():
     link_form = chooseLinkForm()
     link_form.submit.label = Label(link_form.submit.id,"Remove")
@@ -27,3 +26,5 @@ def delete_link():
     links = current_app.database.paginate(current_app.database.select(Link))
     link_form.name.choices = [link.name for link in links]
     return render_template('deleteLink.html',form=link_form,sectionname="Link")
+
+current_menu.register(links_blueprint,delete_link,'.links.delete', 'Rimuovi',logged_only=True)

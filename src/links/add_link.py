@@ -1,5 +1,5 @@
 from flask          import current_app,request,redirect,render_template,url_for
-from flask_menu     import register_menu
+from flask_menu     import current_menu
 from flask_security import auth_required
 from flask_login    import current_user
 from wtforms        import Label
@@ -12,7 +12,6 @@ from .forms         import linkForm
 
 @links_blueprint.route('/add',methods = ['GET','POST'])
 @auth_required()
-@register_menu(links_blueprint, '.links.add', 'Nuovo',logged_only=True)
 def add_link():
     link_form = linkForm()
     link_form.submit.label = Label(link_form.submit.id,"Add")
@@ -26,3 +25,5 @@ def add_link():
         current_app.logger.info("Link to " + clean(request.form['name']) + " added by " + current_user.username)
         return redirect(url_for('links.show_links'))
     return render_template('addLink.html',form=link_form,sectionname="Link")
+
+current_menu.register_menu(links_blueprint,add_link,'.links.add', 'Nuovo',logged_only=True)
