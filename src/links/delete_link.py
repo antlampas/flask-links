@@ -1,5 +1,5 @@
 from flask          import current_app,request,redirect,render_template,url_for
-from flask_menu     import current_menu
+from flask_menu     import MenuNode
 from flask_security import auth_required
 from flask_login    import current_user
 from wtforms        import Label
@@ -27,4 +27,4 @@ def delete_link():
     link_form.name.choices = [link.name for link in links]
     return render_template('deleteLink.html',form=link_form,sectionname="Link")
 
-current_menu.submenu(".links.remove").register(text='Remove',external_url=links_blueprint.url_prefix+"/delete",logged_only=True)
+MenuNode(".links").register(text='Remove',external_url=links_blueprint.url_prefix+"/delete",logged_only=True)

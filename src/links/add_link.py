@@ -1,5 +1,5 @@
 from flask          import current_app,request,redirect,render_template,url_for
-from flask_menu     import current_menu
+from flask_menu     import MenuNode
 from flask_security import auth_required
 from flask_login    import current_user
 from wtforms        import Label
@@ -26,4 +26,4 @@ def add_link():
         return redirect(url_for('links.show_links'))
     return render_template('addLink.html',form=link_form,sectionname="Link")
 
-current_menu.submenu(".links.add").register(text='Add',external_url=links_blueprint.url_prefix+"/add",logged_only=True)
+MenuNode(".links").register(text='Add',external_url=links_blueprint.url_prefix+"/add",logged_only=True)

@@ -1,5 +1,5 @@
 from flask          import current_app,request,redirect,render_template,url_for
-from flask_menu     import current_menu
+from flask_menu     import MenuNode
 from flask_security import auth_required
 from flask_login    import current_user
 from wtforms        import Label
@@ -35,4 +35,4 @@ def edit_link():
         link_form.name.choices = [link.name for link in links]
         return render_template('chooseLink.html',form=link_form,sectionname="Link")
 
-current_menu.submenu(".links.edit").register(text='Edit',external_url=links_blueprint.url_prefix+"/edit",logged_only=True)
+MenuNode(".links").register(text='Edit',external_url=links_blueprint.url_prefix+"/edit",logged_only=True)
