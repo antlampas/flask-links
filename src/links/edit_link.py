@@ -35,4 +35,4 @@ def edit_link():
         link_form.name.choices = [link.name for link in links]
         return render_template('chooseLink.html',form=link_form,sectionname="Link")
 
-MenuNode(".links").register(text='Edit',external_url=links_blueprint.url_prefix+"/edit",logged_only=True)
+MenuNode("Edit",".links").register(text='Edit',external_url=links_blueprint.url_prefix+"/edit",logged_only=True)
